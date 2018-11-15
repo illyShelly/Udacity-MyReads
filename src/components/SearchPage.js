@@ -10,6 +10,7 @@ import Book from './Book'
   // event onChange - when typing new staff
 // require BooksAPI - fetch typed new Books, update state of new empty []
 // map through newSearchedBook and import Book component to handle UI
+// handle ERROR if query is not empty, but our search dosn't match keyword -> then we use map through empty array???
 class SearchPage extends Component {
   state = {
     query: '',
@@ -31,9 +32,17 @@ class SearchPage extends Component {
     // if we have not empty query do this:
     if(query) {
       // return promise
-      BooksAPI.search(query).then((searchedBooks) => {
-        this.setState({ newSearchedBooks: searchedBooks })
+      BooksAPI.search(query)
+      .then((searchedBooks) => {
+        // handle error if book don't match searchkeyword
+        if(searchedBooks.error) {
+          this.setState({ searchedBooks: [] })
+        }
+        else {
+          this.setState({ newSearchedBooks: searchedBooks })
+        }
       })
+      // .catch((error) => { console.log("Query does not match searchable keyword!")})
     } else {
       this.setState({ newSearchedBooks: [] })
     }
