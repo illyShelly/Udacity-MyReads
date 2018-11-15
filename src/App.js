@@ -1,22 +1,43 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
 import './App.css'
 // rendering seach and main page
 import SearchPage from './components/SearchPage'
 import MainPage from './components/MainPage'
+import * as BooksAPI from './BooksAPI'
+
 
 // remove everything, delete ternary operator
 // delete state incl. showSearchPage fce
 // state - data wanted to update/ using from parents to children
-
+  // 3 types - list of books; query(search)-typing to input field(SearchPage); list of books(searched)-in SearchPage
+// 2 children needed state -> the state is in the parent App
+  // parent state (list of books for mainpage and searchpage)
+// import all method from BooksAPI using *
+  // to see fetched book console.log to render() method
+// updated books array we use it in MainPage component
+  // access to that state for MainPage component we use props: this.props.list books
 class BooksApp extends React.Component {
+  state = {
+    books: []
+  }
+
+// call by React when component is created
+// we fetch all the books into array called books as well
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState( { books: books })
+    })
+  }
+
   render() {
+    // console.log(this.state.books)
     return (
       <div className="app">
+      <MainPage listbooks={this.state.books}/>
       <SearchPage />
-      <MainPage />
       </div>
     )
   }
 }
+
 export default BooksApp

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 // singular Component!!!
+// search method - backend search(query); query update the state
+// it will fetch the the books as method getAll
 class SearchPage extends Component {
   render() {
     return (
