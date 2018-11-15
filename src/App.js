@@ -16,6 +16,7 @@ import * as BooksAPI from './BooksAPI'
   // to see fetched book console.log to render() method
 // updated books array we use it in MainPage component
   // access to that state for MainPage component we use props: this.props.list books
+  // onChange method in Book.js -> change state in App method moveToShelf, pass it to MainPage component in App, in MainPage to Book component
 class BooksApp extends React.Component {
   state = {
     books: []
@@ -26,6 +27,17 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState( { books: books })
+    });
+  }
+  // update state once call method onChange on Book
+  // one of the BooksApp class
+  moveToShelf = (book, shelf) => {
+    // backend method from Udacity
+    BooksAPI.update(book, shelf);
+    // update page we need to refresh or pass above code
+// DOESN'T UPDATE ITSELVES
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books: books })
     })
   }
 
@@ -33,7 +45,8 @@ class BooksApp extends React.Component {
     // console.log(this.state.books)
     return (
       <div className="app">
-      <MainPage listbooks={this.state.books}/>
+      <MainPage listbooks={this.state.books} moveToShelf={this.moveToShelf}
+      />
       <SearchPage />
       </div>
     )

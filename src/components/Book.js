@@ -6,20 +6,30 @@ import React from 'react'
 
 // added link from fetched Books array MainPage new filtered open-search, title and authors - this.props.book.xxx
 // pass book to MainPage - other props
+// MOVING BOOK TO DIFFERENT SHELF - select section, method update, onClick or onChange React method when click/change
+  // onChange "listener" change state of books by created methodmoveToShelf (inApp), passing to child component Main and to Book
+  // parameters - book=> this.props.book, shelf=>event.target.value for update(book, shelf) method from Udacity
+//as first option was Current Reading even though it was on Read e.x. - switched with none as first default option
 class Book extends React.Component {
   render() {
     return(
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}"` }}>
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail})"` }}>
           </div>
             <div className="book-shelf-changer">
-              <select>
+              <select
+              onChange={(event) => this.props.moveToShelf(
+                  this.props.book, event.target.value
+              )}
+              >
+
                 <option value="move" disabled>Move to...</option>
+                <option value="none">None</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
-                <option value="none">None</option>
+
               </select>
             </div>
         </div>
