@@ -14,12 +14,15 @@ import React from 'react'
   // without refresh almost it works               value={this.props.currentShelf}
 
   // TRY USE ANOTHER WAY OF CHANGING SHELF!!! - delete var Main
+// ERROR thumbnail undefined - not image some book - inside of render() !!!
 class Book extends React.Component {
   render() {
+    let existThumbnail = this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : '';
+
     return(
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail})"` }}>
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${existThumbnail})"` }}>
           </div>
             <div className="book-shelf-changer">
               <select

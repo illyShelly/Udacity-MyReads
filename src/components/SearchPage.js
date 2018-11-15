@@ -69,7 +69,6 @@ class SearchPage extends Component {
                   <Book
                     book={newSearchedBook}
                   />
-
                 </li>
               ))
             }
