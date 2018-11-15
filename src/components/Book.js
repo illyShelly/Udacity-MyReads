@@ -10,6 +10,7 @@ import React from 'react'
   // onChange "listener" change state of books by created methodmoveToShelf (inApp), passing to child component Main and to Book
   // parameters - book=> this.props.book, shelf=>event.target.value for update(book, shelf) method from Udacity
 //as first option was Current Reading even though it was on Read e.x. - switched with none as first default option
+// currentShelf - props from MainPage - changing value
 class Book extends React.Component {
   render() {
     return(
@@ -22,14 +23,15 @@ class Book extends React.Component {
               onChange={(event) => this.props.moveToShelf(
                   this.props.book, event.target.value
               )}
+              value={this.props.currentShelf}
+
               >
 
                 <option value="move" disabled>Move to...</option>
-                <option value="none">None</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
-
+                <option value="none">None</option>
               </select>
             </div>
         </div>
