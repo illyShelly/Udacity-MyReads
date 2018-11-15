@@ -13,6 +13,7 @@ import Book from './Book'
 //props for Book.js called book={...} alredy maped and filtered in <Book /> component
 // in Book.js do not forget write this.props.book.xxx
 // change the shelf button - new Component solve problem with default move currentShelf - props for books.js
+  // default - another way in Books  value={this.props.book.shelf}
 class MainPage extends Component {
   render() {
     console.log(this.props.listbooks)
@@ -34,7 +35,7 @@ class MainPage extends Component {
                           <Book
                           book={book}
                           moveToShelf={this.props.moveToShelf}
-                          currentShelf = "currentlyReading"
+                          // currentShelf = "currentlyReading"
                           />
                         </li>
                         ))
@@ -51,7 +52,7 @@ class MainPage extends Component {
                           <li key={book.id}>
                           <Book book={book}
                           moveToShelf={this.props.moveToShelf}
-                          currentShelf = "wantToRead"
+                          // currentShelf = "wantToRead"
                           />
                         </li>
                         ))
@@ -68,7 +69,8 @@ class MainPage extends Component {
                           <li key={book.id}>
                           <Book book={book}
                           moveToShelf={this.props.moveToShelf}
-                          currentShelf = "read"/>
+                          // currentShelf = "read"
+                          />
                         </li>
                         ))
                       }

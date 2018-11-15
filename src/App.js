@@ -35,19 +35,21 @@ class BooksApp extends React.Component {
     // backend method from Udacity
     BooksAPI.update(book, shelf);
     // update page we need to refresh or pass above code
-// DOESN'T UPDATE ITSELVES
     BooksAPI.getAll().then((books) => {
       this.setState({ books: books })
     })
   }
-
   render() {
     // console.log(this.state.books)
     return (
       <div className="app">
-      <MainPage listbooks={this.state.books} moveToShelf={this.moveToShelf}
-      />
-      <SearchPage />
+        { /*
+           <MainPage
+        listbooks={this.state.books}
+        moveToShelf={this.moveToShelf}
+        />
+       */ }
+        <SearchPage />
       </div>
     )
   }

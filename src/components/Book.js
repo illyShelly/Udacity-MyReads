@@ -11,6 +11,9 @@ import React from 'react'
   // parameters - book=> this.props.book, shelf=>event.target.value for update(book, shelf) method from Udacity
 //as first option was Current Reading even though it was on Read e.x. - switched with none as first default option
 // currentShelf - props from MainPage - changing value
+  // without refresh almost it works               value={this.props.currentShelf}
+
+  // TRY USE ANOTHER WAY OF CHANGING SHELF!!! - delete var Main
 class Book extends React.Component {
   render() {
     return(
@@ -23,10 +26,8 @@ class Book extends React.Component {
               onChange={(event) => this.props.moveToShelf(
                   this.props.book, event.target.value
               )}
-              value={this.props.currentShelf}
-
+              value={this.props.book.shelf}
               >
-
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
