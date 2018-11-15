@@ -9,6 +9,9 @@ import Book from './Book'
 // to display list of books (array) we use filter method - depends on Reading, want to read or Read
 // filter and map above <li> and component Book - we create UI
   // do not forget add unique key to list item: key={book.id}
+  // passing data to book in Book.js- img, title, author from fetch api
+//props for Book.js called book={...} alredy maped and filtered in <Book /> component
+// in Book.js do not forget write this.props.book.xxx
 class MainPage extends Component {
   render() {
     console.log(this.props.listbooks)
@@ -26,7 +29,9 @@ class MainPage extends Component {
                       { this.props.listbooks.filter(book => book.shelf === 'currentlyReading')
                         .map(book => (
                           <li key={book.id}>
-                          <Book />
+                          <Book
+                          book={book}
+                          />
                         </li>
                         ))
                       }
@@ -40,7 +45,7 @@ class MainPage extends Component {
                     { this.props.listbooks.filter(book => book.shelf === 'wantToRead')
                         .map(book => (
                           <li key={book.id}>
-                          <Book />
+                          <Book book={book}/>
                         </li>
                         ))
                       }
@@ -54,7 +59,7 @@ class MainPage extends Component {
                     { this.props.listbooks.filter(book => book.shelf === 'read')
                         .map(book => (
                           <li key={book.id}>
-                          <Book />
+                          <Book book={book}/>
                         </li>
                         ))
                       }
