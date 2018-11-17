@@ -36,10 +36,11 @@ class BooksApp extends React.Component {
   // one of the BooksApp class
   moveToShelf = (book, shelf) => {
     // backend method from Udacity
-    BooksAPI.update(book, shelf);
-    // update page we need to refresh or pass above code
+    // update page we need to refresh or pass above code=>promise and it starts to work!
+    BooksAPI.update(book, shelf).then(() => {
     BooksAPI.getAll().then((books) => {
       this.setState({ books: books })
+    })
     })
   }
   render() {
