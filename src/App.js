@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import './App.css'
 // rendering seach and main page
 import SearchPage from './components/SearchPage'
@@ -17,6 +18,7 @@ import * as BooksAPI from './BooksAPI'
 // updated books array we use it in MainPage component
   // access to that state for MainPage component we use props: this.props.list books
   // onChange method in Book.js -> change state in App method moveToShelf, pass it to MainPage component in App, in MainPage to Book component
+//added router and import link - index.js, main, search changed
 class BooksApp extends React.Component {
   state = {
     books: []
@@ -43,13 +45,18 @@ class BooksApp extends React.Component {
     // console.log(this.state.books)
     return (
       <div className="app">
-        { /*
-           <MainPage
-        listbooks={this.state.books}
-        moveToShelf={this.moveToShelf}
+        <Route exact path="/" render={() => (
+          <MainPage
+          listbooks={this.state.books}
+          moveToShelf={this.moveToShelf}
+          />
+        )}
         />
-       */ }
-        <SearchPage />
+      <Route exact path="/search" render={() => (
+        <SearchPage
+          moveToShelf={this.moveToShelf}
+        />
+        )} />
       </div>
     )
   }

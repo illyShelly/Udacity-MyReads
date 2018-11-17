@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import Book from './Book'
+
 // singular Component!!!
 // search method - backend search(query); query update the state
 // it will fetch the the books as method getAll
@@ -11,6 +13,7 @@ import Book from './Book'
 // require BooksAPI - fetch typed new Books, update state of new empty []
 // map through newSearchedBook and import Book component to handle UI
 // handle ERROR if query is not empty, but our search dosn't match keyword -> then we use map through empty array???
+// install 'react-router-dom' and change href to link and import
 class SearchPage extends Component {
   state = {
     query: '',
@@ -52,7 +55,8 @@ class SearchPage extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <a className="close-search">Close</a>
+          <Link
+          to="/" className="close-search">Close</Link>
           {/*
           onClick={() =>
             this.setState({ showSearchPage: false })}
@@ -77,6 +81,7 @@ class SearchPage extends Component {
                 <li key={newSearchedBook.id}>
                   <Book
                     book={newSearchedBook}
+                    moveToShelf={this.props.moveToShelf}
                   />
                 </li>
               ))

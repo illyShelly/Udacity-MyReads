@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Book from './Book'
 
 // remove 1 book to component rest of them between <li> delete
@@ -14,6 +15,7 @@ import Book from './Book'
 // in Book.js do not forget write this.props.book.xxx
 // change the shelf button - new Component solve problem with default move currentShelf - props for books.js
   // default - another way in Books  value={this.props.book.shelf}
+// change a href to link import it as well - it is manage by react-dom now
 class MainPage extends Component {
   render() {
     console.log(this.props.listbooks)
@@ -80,7 +82,7 @@ class MainPage extends Component {
             </div>
           </div>
           <div className="open-search">
-            <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+            <Link to="/search">Add a book</Link>
           </div>
        </div>
 
