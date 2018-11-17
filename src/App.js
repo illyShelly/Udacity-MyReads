@@ -19,6 +19,7 @@ import * as BooksAPI from './BooksAPI'
   // access to that state for MainPage component we use props: this.props.list books
   // onChange method in Book.js -> change state in App method moveToShelf, pass it to MainPage component in App, in MainPage to Book component
 //added router and import link - index.js, main, search changed
+// compare app.js books:[] with newsearchedBooks:[] if searched is already in shelf ... compare their id, to search -> component props
 class BooksApp extends React.Component {
   state = {
     books: []
@@ -55,6 +56,7 @@ class BooksApp extends React.Component {
       <Route exact path="/search" render={() => (
         <SearchPage
           moveToShelf={this.moveToShelf}
+          books={this.state.books}
         />
         )} />
       </div>

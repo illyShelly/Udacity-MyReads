@@ -14,6 +14,9 @@ import Book from './Book'
 // map through newSearchedBook and import Book component to handle UI
 // handle ERROR if query is not empty, but our search dosn't match keyword -> then we use map through empty array???
 // install 'react-router-dom' and change href to link and import
+// compare app.js books:[] with newsearchedBooks:[] if searched is already in shelf ... compare their id
+  //change multiple line {} braces instead one line <li> and return for {}
+  // and filter after map method
 class SearchPage extends Component {
   state = {
     query: '',
@@ -75,16 +78,27 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {/* map through new searched books and set <li> id and print every single one using Book component*/}
+                {/* map through new searched books and set <li> id and print every single one using Book component*/}
             {
-              this.state.newSearchedBooks.map(newSearchedBook => (
-                <li key={newSearchedBook.id}>
+              //when searched is not assign to any shelf using None as option in button
+                // search all books, and compare books:[] and newSearchedBook: []
+              this.state.newSearchedBooks.map(newSearchedBook => {
+                let shelf = 'none';
+
+              this.props.books.map(book => (
+                book.id === newSearchedBook.id ?
+                shelf = book.shelf : ''
+                ));
+                return (
+                  <li key={newSearchedBook.id}>
                   <Book
                     book={newSearchedBook}
                     moveToShelf={this.props.moveToShelf}
+                    currentShelf={shelf}
                   />
                 </li>
-              ))
+              );
+              })
             }
           </ol>
         </div>
